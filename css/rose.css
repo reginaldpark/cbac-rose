@@ -1,0 +1,279 @@
+/* Color definitions */
+ :root {
+	--color1: #3498DB;
+	--color2: #29a329;
+	--color3: #9B59B6;
+	--color4: #F39C12;
+	--color5: #E74C3C;
+	--color6: #F7DC6F;
+	--color7: #85929E;
+	--color8: #7E5109;
+	--color9: #424949;
+	--color10: #1B4F72;
+}
+
+/* These are code changes */
+/* Containers */
+.custom-widget{
+	width: 1000px; /* 58.8235294118rem; */
+	margin: 0 auto;
+}
+
+.filters-container,
+.container {
+	margin: auto;
+}
+.filter-container{
+	width: 90%;
+	margin: auto;
+	text-align: center;
+}
+
+.year-container{
+	margin: 1.17647058824rem 0;
+    display: inline-block;
+    vertical-align: text-bottom;
+    height: 34px;
+}
+
+.slider-container{
+	width: 80%;
+	margin: 1.17647058824rem auto;
+	display: inline-block;
+}
+.avalanche-row {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+.avalanche-rose-container {
+	width: 70%;
+}
+
+.avalanche-rose {
+	height: 640px; /* 37.6470588235rem; */
+	width: 648px; /* 38.1176470588rem; */
+	padding: 10px;
+	background-image: url("/img/blank.jpg");
+	position: relative;
+	float:left;
+	
+}
+
+.legend-container{
+	float:left;
+	margin: 1.1764705882420rem auto;
+	width: 29%;
+}
+
+.avalanche-rose-center {
+	position: relative;
+	height: 18.8235294118rem;
+	width: 19.0588235294rem;
+	margin-top: 49%;
+	margin-left: 50%;
+}
+
+.avalanches {
+	position: absolute;
+	border-radius: 50%;
+}
+
+/* Destructive Size */
+.size-d0-5 {
+	height: 0.3rem;
+	width: 0.3rem;
+	margin-top: -0.15rem;
+    margin-left: -0.15rem;
+}
+.size-d1 {
+	height: 0.5rem;
+	width: 0.5rem;
+	margin-top: -0.25rem;
+    margin-left: -0.25rem;
+}
+.size-d1-5 {
+	height: 0.7rem;
+	width: 0.7rem;
+	margin-top: -0.35rem;
+    margin-left: -0.35rem;
+}
+.size-d2 {
+	height: 0.9rem;
+	width: 0.9rem;
+	margin-top: -0.45rem;
+    margin-left: -0.45rem;
+}
+.size-d2-5 {
+	height: 1.1rem;
+	width: 1.1rem;
+	margin-top: -0.55rem;
+    margin-left: -0.55rem;
+}
+.size-d3 {
+	height: 1.3rem;
+	width: 1.3rem;
+	margin-top: -0.65rem;
+    margin-left: -0.65rem;
+}
+.size-d3-5 {
+	height: 1.5rem;
+	width: 1.5rem;
+	margin-top: -0.75rem;
+    margin-left: -0.75rem;
+}
+.size-d4 {
+	height: 1.7rem;
+	width: 1.7rem;
+	margin-top: -0.85rem;
+    margin-left: -0.85rem;
+}
+.size-d4-5 {
+	height: 1.9rem;
+	width: 1.9rem;
+	margin-top: -0.95rem;
+    margin-left: -0.95rem;
+}
+.size-d5 {
+	height: 2.1rem;
+	width: 2.1rem;
+	margin-top: -1.05rem;
+    margin-left: -1.05rem;
+}
+
+/* Avalanches */
+.avalanche-2 {
+	top: 20%;
+	left: 0%;
+}
+.avalanche-3 {
+	top: -50%;
+	left: -50%;
+}
+.avalanche-4 {
+	top: -15%;
+	left: 0%;
+}
+.avalanche-5 {
+	top: 0%;
+	left: -20%;
+}
+
+/* Legend */
+.legend {
+	display: block;
+	text-align: center;
+	margin: 1.1764705882420rem;
+}
+
+.legend-entry {
+	display: block;
+	margin: 10px;
+}
+.legend-col {
+	display: inline;
+}
+.legend-col-left {
+	text-align: center;
+}
+.legend-label {
+	display: inline-block;
+}
+.legend-circle {
+	display: inline-block;
+	border-radius: 50%;
+	margin: 0 0 0 0.5rem;
+    position: relative;
+	margin-right: 0.5rem;
+}
+
+/* Legend Colors */
+.color1 {
+	background-color: var(--color1);
+} 
+.color2 {
+	background-color: var(--color2);
+}
+.color3 {
+	background-color: var(--color3);
+} 
+.color4 {
+	background-color: var(--color4);
+} 
+.color5 {
+	background-color: var(--color5);
+} 
+.color6 {
+	background-color: var(--color6);
+} 
+.color7 {
+	background-color: var(--color7);
+} 
+.color8 {
+	background-color: var(--color8);
+} 
+.color9 {
+	background-color: var(--color9);
+} 
+.color10 {
+	background-color: var(--color10);
+} 
+.colordanger1 {
+	background-color: #000000;
+}
+.colordanger2 {
+	background-color: #ff0000;
+}
+.colordanger3 {
+	background-color: #ff6600;
+}
+.colordanger4 {
+	background-color: #ffff00;
+}
+.colordanger5 {
+	background-color: #29a329;
+}
+
+table td {
+	border-top: none;
+}
+
+@media (max-device-width: 650px) {
+	select.filters {
+		display: block;
+	}
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+   .modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('/img/loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+
+
+ 
