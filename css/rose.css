@@ -281,19 +281,24 @@ table td {
 	}
 }
 
-@media (max-device-width:460px) {
+@media (max-device-width:560px) {
 	html {
 		font-size: 12px;
 	}
 }
-@media (max-device-width:390px) {
+@media (max-device-width:460px) {
 	html {
 		font-size: 10px;
 	}
 }
-@media (max-device-width:260px) {
+@media (max-device-width:390px) {
 	html {
 		font-size: 8px;
+	}
+}
+@media (max-device-width:320px) {
+	html {
+		font-size: 6px;
 	}
 }
 
@@ -334,6 +339,10 @@ body.loading .modal {
 
 div.dt-buttons {
 	float: right;
+}
+
+.mnay-0.x-section {
+	padding-top: 0px;
 }
 
 
