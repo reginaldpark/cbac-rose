@@ -3,8 +3,22 @@ $body = $("body");
 $(function(){
 	
 	// Set default date window of 2 weeks
+	var selectedYear = parseInt( $( "#year-select" ).val() );
 	var today = new Date();
-	var defaultStart = new Date(today.getFullYear(), today.getMonth(), today.getDate()-14);
+	
+	if ( selectedYear == today.getFullYear() ) {
+		// This year bounds & default values
+		var minBound = new Date(selectedYear, 8, 1),
+			maxBound = today,
+			minDefault= new Date(today.getFullYear(), today.getMonth(), today.getDate()-14),
+			maxDefault = today;
+	} else {
+		// Last year bounds & default values
+		var minBound = new Date(selectedYear, 8, 1),
+			maxBound = new Date(selectedYear+1, 7, 31),
+			minDefault= new Date(selectedYear, 8, 1),
+			maxDefault = new Date(selectedYear+1, 7, 31);
+	}
 
 	// Filter dropdown changes
 	$( "select.filters" ).change(function() {
@@ -30,6 +44,12 @@ $(function(){
 		
 	});
 
+	$( "#year-select" ).change(function() {
+		var thisYear = $( this ).val();
+		// window.location = "https://cbavalanchecenter.org/avalanche-rose/?year="+thisYear;
+		window.location = "/rose.php?year="+thisYear;
+	});
+
 	// Color By dropdown changed
 	$( "#color-by" ).change(function() {
 		var $this = $( this );
@@ -52,18 +72,10 @@ $(function(){
 
 	});
 
-	// $( document ).ajaxStart(function() {
-	// 	$body.addClass("loading");
-	// });
-
-	// $( document ).ajaxStop(function() {
-	// 	$body.removeClass("loading");
-	// });
-
 	// Initialize date range slider
 	$("#slider").dateRangeSlider({
-		bounds: { min: new Date(2021, 11, 1), max: new Date() },
-		defaultValues: { min: defaultStart, max: today },
+		bounds: { min: minBound, max: maxBound },
+		defaultValues: { min: minDefault, max: maxDefault },
 		formatter:function(val){
 			var days = val.getDate(),
 				month = val.getMonth() + 1,
@@ -80,12 +92,11 @@ $(function(){
 
 		getJSONData( startDateFormat, endDateFormat );
 	});
-	
-	var defaultStartFormat = formatDateForQuery( defaultStart );
-	var todayFormat = formatDateForQuery( today );
 
+	console.log(minDefault);
+	console.log(maxDefault);
 	// Default Date Range
-	getJSONData( defaultStartFormat, todayFormat );
+	getJSONData( minDefault,maxDefault );
 	// Default legend
 	$(".custom-legend").show();
 	  
@@ -98,6 +109,9 @@ function getJSONData( startDate, endDate ) {
 	// If end date is today, use opacity to show recency
 	var todayFormat = formatDateForQuery( new Date() );
 	var addOpacity = ( endDate == todayFormat )  ? true : false;
+
+	console.log(startDate);
+	console.log(endDate);
 
 	// Get data
 	$.ajax({

@@ -15,7 +15,7 @@
 /* These are code changes */
 /* Containers */
 .custom-widget{
-	width: 1000px; /* 58.8235294118rem; */
+	width: 58.8235294118rem;
 	margin: 0 auto;
 }
 
@@ -51,13 +51,11 @@
 }
 
 .avalanche-rose {
-	height: 640px; /* 37.6470588235rem; */
-	width: 648px; /* 38.1176470588rem; */
-	/* height: 40.1em;
-    width: 40.6em; */
-
-	padding: 10px;
+	height: 37.6470588235rem;
+	width: 38.1176470588rem;
+    padding: 0.635rem;
 	background-image: url("/img/blank.jpg");
+	background-size:contain;
 	position: relative;
 	float:left;
 	
@@ -227,8 +225,56 @@ table td {
 }
 
 @media (max-device-width: 650px) {
-	select.filters {
+	.date-container,
+	.slider-container,
+	.year-container,
+	.filter-container,
+	.avalanche-rose-container {
+		position: relative;
 		display: block;
+		margin: auto;
+		text-align: center;
+		float: none;
+	}
+
+	.ui-rangeSlider-label {
+		font-size: 0.7rem;
+	}
+
+	.slider-container {
+		padding-bottom: 10px;
+	}
+
+	.legend-container {
+		width: 100%;
+	}
+	.legend-container hr {
+		display: none;
+	}
+	.legend {
+		margin: 10px 0;
+		width: 48%;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.legend,
+	.legend-label {
+		font-size:0.8rem;
+	}
+
+	.legend table td {
+		padding: 3px;
+	}
+
+	.avalanche-rose {
+		/* width: auto;
+    	height: 39%; */
+		float: none;
+	}
+
+	.custom-widget{
+		width: auto;
 	}
 }
 
