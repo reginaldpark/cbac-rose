@@ -5,7 +5,7 @@
 
     include('filterData.php');
 
-    $cacheClear = "1.7";
+    $cacheClear = "1.8";
     $data = new Data;
     // $zones = $data->getZones();
     $zones = $data->zones;
@@ -13,6 +13,12 @@
     $types = $data->types;
     $triggers = $data->triggers;
     $modifiers = $data->modifiers;
+
+    $startYear = (date("n") >= 9) ? date("Y") : date("Y")-1;
+    $year = $_GET["year"];
+    if ( $year == "" ) {
+        $year = $startYear;
+    }
 
     // die($triggers);
 
@@ -61,10 +67,14 @@
                     <div class="year-container">    
                         <select id="year-select" class="small gfield_select">
                             <?php 
-                                $startYear = (date("n") >= 9) ? date("Y") : date("Y")-1;
+                                
                                 for ($yyyy = $startYear; $yyyy >= 2021; $yyyy--) {
                                     $nextYear = $yyyy + 1;
-                                    echo "<option value='{$yyyy}'>{$yyyy}-{$nextYear}</option>";
+                                    echo "<option value='{$yyyy}' ";
+                                    if ($yyyy == $year) {
+                                        echo "selected";
+                                    }
+                                    echo ">{$yyyy}-{$nextYear}</option>";
                                 }
                             ?>
                         </select>
