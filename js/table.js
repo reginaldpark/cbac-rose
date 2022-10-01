@@ -1,32 +1,82 @@
+var minDate, maxDate;
+ 
+// Custom filtering function which will search data in column four between two values
+$.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date( data[0] );
+ 
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
+
 $(function(){
 	
-    $('#example').DataTable( {
-        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
- 
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
- 
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        },
-        dom: 'lBfrtip',
+    // Create date inputs
+    minDate = new DateTime($('#min'), {
+        format: 'MM/DD/YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'MM/DD/YYYY'
+    });
+
+    var table = $('#example').DataTable( {
+        dom: 'BPlfrtip',
         buttons: [
-            '', 'copy', 'csv', 'excel', 'pdf', 'print'
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ ':visible' ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ ':visible' ]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ ':visible' ]
+                }
+            }
         ],
-        "pageLength": 25,
-        "order": [[ 0, "desc" ]]
+        responsive: true,
+        pageLength: 25,
+        order: [[ 0, "desc" ]],
+        searchPanes: {
+            controls: false
+        },
+        columnDefs: [
+            { 
+                visible: false, 
+                targets: [0],
+                searchPanes: {
+                    show: false
+                }
+            },
+            { 
+                targets: [1,2,3,8,11],
+                searchPanes: {
+                    show: false
+                }
+            }
+        ]
     } );
+
+    // Refilter the table
+    $('#min, #max').on('change', function () {
+        table.draw();
+    });
 
 });

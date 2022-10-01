@@ -35,7 +35,6 @@ $(function(){
 		var $this = $( this );
 		var colorBy = $this.val();
 			colorBy = (colorBy == "") ? "zone" : colorBy;
-		var classSuffix = (colorBy == "danger") ? "danger" : "";
 
 		// Display proper legend
 		$(".custom-legend .legend-entry").hide();
@@ -48,7 +47,7 @@ $(function(){
 		$( ".color-"+colorBy ).each(function( index ) {
 			var count = $( this ).data("count");
 			var name = $( this ).data("name");
-			$("."+colorBy+"-"+name).addClass("color"+classSuffix+count);
+			$("."+colorBy+"-"+name).addClass("color"+count);
 		});
 
 	});
@@ -113,19 +112,24 @@ function getJSONData( startDate, endDate ) {
 			for ( var a = 0; a < avalanches.length; a++) {
 				var avalancheCount = a + 1;
 				
-				var size = avalanches[a].size.split('.').join('-');
+				var size = avalanches[a].size;
+				var sizeClass = avalanches[a].size.split('.').join('-');
 				var avalancheDate = avalanches[a].avalancheDate;
 				var aAvalancheDate = avalancheDate.split('-');
 				var avalancheDateFormat = aAvalancheDate[1]+'/'+aAvalancheDate[2]+'/'+aAvalancheDate[0];
 				var avyMonth = parseInt(aAvalancheDate[1])-1;
 				var dAvalanceDate = new Date ( aAvalancheDate[0], avyMonth, parseInt(aAvalancheDate[2]) );
+				var elevation = avalanches[a].elevation;
+				var aspect = avalanches[a].aspect;
 				var trigger = avalanches[a].trigger;
-				// var danger = avalanches[a].danger;
+				var triggerFilter = avalanches[a].triggerFilter.split(' ').join('-');;
+				var modifier = avalanches[a].modifier;
 				var zone = avalanches[a].zone;
 				var type = avalanches[a].type;
+				var typeFilter = avalanches[a].typeFilter;
 				var interface = avalanches[a].interface;
 				var url = avalanches[a].url;
-				var typeClass = type.split(' ').join('-');
+				var typeClass = typeFilter.split(' ').join('-');
 				var interfaceClass = interface.split(' ').join('-').split('/').join('-');
 				var top = avalanches[a].top;
 				var left = avalanches[a].left;
@@ -136,10 +140,9 @@ function getJSONData( startDate, endDate ) {
 				var opacity = addOpacity ? 1-dayDifference*0.1 : 1;
 
 				// Fill HTML tooltip text 
-				// <td>{$avalanche['danger']}</td> ' danger-'+danger
-				var thisTooltip = "Date: "+avalancheDateFormat+"<br>Zone: "+zone+"<br>Size: "+size+"<br>Trigger: "+trigger+"<br>Type: "+type+"<br>Interface: "+interface+"<br><a href='"+url+"' target='_blank'>Observation</a>";
+				var thisTooltip = "Date: "+avalancheDateFormat+"<br>Zone: "+zone+"<br>Size: "+size+"<br>Elevation: "+elevation+"<br>Aspect: "+aspect+"<br>Trigger: "+trigger+"<br>Trigger Modifier: "+modifier+"<br>Type: "+type+"<br>Interface: "+interface+"<br><a href='"+url+"' target='_blank'>View Observation</a>";
 				// List of classes for filtering
-				var theseClasses = String('size-'+size+' trigger-'+trigger+' zone-'+zone+' type-'+typeClass+' interface-'+interfaceClass).toLowerCase();
+				var theseClasses = String('size-'+sizeClass+' trigger-'+triggerFilter+' modifier-'+modifier+' zone-'+zone+' type-'+typeClass+' interface-'+interfaceClass).toLowerCase();
 				// Create avalanche divs
 				var avalancheHtml = '<div class="avalanches avalanche-'+avalancheCount+' ' + theseClasses + '" style="top:'+top+'rem; left:'+left+'rem; opacity:'+opacity+'" title="'+thisTooltip+'"></div>';
 				$( '.avalanche-rose-center' ).append(avalancheHtml);

@@ -3,7 +3,7 @@
     //  echo('GOOGLE_APPLICATION_CREDENTIALS===='.getenv('GOOGLE_APPLICATION_CREDENTIALS'));
     // die(phpinfo());
 
-    $cache = "1.3";
+    $cacheClear = "1.7";
     $startDate = '2021-08-01';
     $endDate = '2022-07-31';
     include('data.php');
@@ -41,20 +41,37 @@
 		media='all' />
 	<link rel='stylesheet' id='cs-inline-css' href='/css/template2.css' type='text/css' media='all' />
     <link rel='stylesheet' href='//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css'>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/searchpanes/1.4.0/css/searchPanes.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css">
 
-    <link rel='stylesheet' href='/css/rose.css?c=<?php echo $cache ?>' type='text/css'	media='all' />
+    <link rel='stylesheet' href='/css/rose.css?c=<?php echo $cacheClear ?>' type='text/css'	media='all' />
 </head>
 <body>		
     <div style="margin:20px;">
+        <table border="0" cellspacing="0" cellpadding="0" style="float: left; width: 50%; position: absolute; z-index:1000">
+            <tbody>
+                <tr>
+                    <td style="padding:0;"><b>Date Filter:</b>&nbsp;&nbsp;&nbsp;
+                        Minimum date:&nbsp;<input type="text" id="min" name="min">&nbsp;&nbsp;
+                        Maximum date:&nbsp;<input type="text" id="max" name="max">
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
         <table id="example" class="display" style="width:100%">
             <thead>
                 <tr>
+                    <th>Date</th>    
                     <th>Date</th>
                     <th>Forcast Zone</th>
+                    <th>Location</th>
                     <th>Size</th>
+                    <th>Elevation</th>
+                    <th>Aspect</th>
                     <th>Trigger</th>
-                    <!-- <th>Danger Rating</th> -->
+                    <th>Trigger Modifier</th>
                     <th>Type</th>
                     <th>Interface</th>
                     <th>Link</th>
@@ -62,32 +79,37 @@
             </thead>
             <tbody>
                 <?php foreach ($avalanches as $avalanche) {  
-                    // $c1 = explode("-", $avalanche['avalancheDate']); [1]}/{$c1[2]}/{$c1[0] <td>{$avalanche['danger']}</td>
-                    $c1 = $avalanche['avalancheDate'];
+                    $c1 = explode("-", $avalanche['avalancheDate']); 
+                    // {$c1[1]}/{$c1[2]}/{$c1[0]
+                    // $c1 = $avalanche['avalancheDate']; {$c1[1]}/{$c1[2]}/
                     echo "<tr>
-                            <td>{$c1}</td>
+                            <td>{$avalanche['avalancheDate']}</td>
+                            <td><span class='none'>{$avalanche['avalancheDate']}</span>{$c1[1]}/{$c1[2]}/{$c1[0]}</td>
                             <td>{$avalanche['zone']}</td>
+                            <td>{$avalanche['location']}</td>
                             <td>{$avalanche['size']}</td>
+                            <td>{$avalanche['elevation']}</td>
+                            <td>{$avalanche['aspect']}</td>
                             <td>{$avalanche['trigger']}</td>
+                            <td>{$avalanche['modifier']}</td>
                             <td>{$avalanche['type']}</td>
                             <td>{$avalanche['interface']}</td>
-                            <td><a href='{$avalanche['url']}' target='_blank'>Observation</a></td>
+                            <td><a href='{$avalanche['url']}' target='_blank'>View&nbsp;Observation</a></td>
                     </tr>";
                 }
                 ?>
             </tbody>
-            <tfoot>
+            <!--- <tfoot>
                 <tr>
                     <th>Date</th>
                     <th>Forcast Zone</th>
                     <th>Size</th>
                     <th>Trigger</th>
-                    <!-- <th>Danger Rating</th> -->
                     <th>Type</th>
                     <th>Interface</th>
                     <th>Link</th>
                 </tr>
-            </tfoot>
+            </tfoot> --->
         </table>
     </div>
 
@@ -95,13 +117,18 @@
 
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 
-    <script type="text/javascript" src="/js/table.js?c=<?php echo $cache ?>"></script>
+	<script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/searchpanes/1.4.0/js/dataTables.searchPanes.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
+
+    <script type="text/javascript" src="/js/table.js?c=<?php echo $cacheClear ?>"></script>
 </body>
 </html>

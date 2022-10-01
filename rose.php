@@ -5,13 +5,14 @@
 
     include('filterData.php');
 
-    $cache = "1.3";
+    $cacheClear = "1.7";
     $data = new Data;
-    //$dangers = $data->getDangers();
-    $zones = $data->getZones();
+    // $zones = $data->getZones();
+    $zones = $data->zones;
     $interfaces = $data->interfaces;
     $types = $data->types;
     $triggers = $data->triggers;
+    $modifiers = $data->modifiers;
 
     // die($triggers);
 
@@ -49,7 +50,7 @@
     
     <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.css" rel="stylesheet">
 
-    <link rel='stylesheet' href='/css/rose.css?c=<?php echo $cache ?>' type='text/css'	media='all' />
+    <link rel='stylesheet' href='/css/rose.css?c=<?php echo $cacheClear ?>' type='text/css'	media='all' />
 </head>
 <body class="loading">
 	<div class="custom-widget">
@@ -82,7 +83,7 @@
                             }
                         ?>
 					</select>
-					<select id="type-filter" class="filters small gfield_select" data-type="type">
+					<select id="type-filter" class="filters small gfield_select" data-type="typeFilter">
 						<option value="">All Avalanche Types</option>
 						<?php 
                             foreach ($types as $type) {
@@ -100,12 +101,21 @@
                             }
                         ?>
 					</select>
-					<select id="trigger-filter" class="filters small gfield_select" data-type="trigger">
+					<select id="trigger-filter" class="filters small gfield_select" data-type="triggerFilter">
 						<option value="">All Triggers</option>
 						<?php 
                             foreach ($triggers as $trigger) {
-                                $formattedValue = strtolower($trigger);
+                                $formattedValue = strtolower(str_replace(' ', '-', $trigger));
                                 echo "<option value='trigger-{$formattedValue}'>{$trigger}</option>";
+                            }
+                        ?>
+					</select>
+                    <select id="modifier-filter" class="filters small gfield_select" data-type="modifier">
+						<option value="">All Modifiers</option>
+						<?php 
+                            foreach ($modifiers as $modifier) {
+                                $formattedValue = strtolower($modifier);
+                                echo "<option value='modifier-{$formattedValue}'>{$modifier}</option>";
                             }
                         ?>
 					</select>
@@ -113,7 +123,7 @@
 						<option value="">All Sizes</option>
 						<?php 
                             foreach ($data->sizes as $size) {
-                                $lowerCaseSize = strtolower($size);
+                                $lowerCaseSize = strtolower(str_replace('.', '-', $size));
                                 echo "<option value='size-{$lowerCaseSize}'>{$size}</option>";
                             }
                         ?>
@@ -133,7 +143,6 @@
                             <option value="type">Avalanche Type</option>
                             <option value="interface">Failure Interface</option>
                             <option value="trigger">Trigger</option>
-                            <!-- <option value="danger">Danger Rating</option> -->
                             <option value="zone">Forecast Zone</option>
                         </select>
                         <div class="custom-legend" style="display:none;">
@@ -159,27 +168,19 @@
                                 }
                                 $t = 1;
                                 foreach ($triggers as $trigger) {
-                                    $formattedValue = strtolower($trigger);
+                                    $formattedValue = str_replace(' ', '-', strtolower($trigger));
                                     echo "<tr class='legend-entry trigger-legend' >
                                         <td class='legend-col-left'><div class='legend-circle size-d3 color{$t} color-trigger' data-name='{$formattedValue}' data-count='{$t}'></div></td>
                                         <td><div class='legend-label'>{$trigger}</div></td>
                                     </tr>";
                                     ++$t;
                                 }
-                                // for ($d = 0; $d < count($dangers); $d++) {
-                                //     $lowerCaseDanger = strtolower($dangers[$d]);
-                                //     $plusOne = $d + 1;
-                                //     echo "<tr class='legend-entry danger-legend'>
-                                //             <td class='legend-col-left'><div class='legend-circle size-d3 colordanger{$plusOne} color-danger' data-name='{$lowerCaseDanger}' data-count='{$plusOne}'></div></td>
-                                //             <td><div class='legend-label'>{$dangers[$d]}</div></td>
-                                //         </tr>";
-                                // }
                                 for ($z = 0; $z < count($zones); $z++) {
                                     $lowerCaseZone = strtolower($zones[$z]);
                                     $plusOne = $z + 1;
                                     echo "<tr class='legend-entry zone-legend'>
                                             <td class='legend-col-left'><div class='legend-circle size-d3 color{$plusOne} color-zone' data-name='{$lowerCaseZone}' data-count='{$plusOne}'></div></td>
-                                            <td><div class='legend-label'>{$zones[$z]} Mountains</div></td>
+                                            <td><div class='legend-label'>{$zones[$z]}&nbsp;Mountains</div></td>
                                         </tr>";
                                 }
                                 echo "</table>";
@@ -221,7 +222,7 @@
     <!--- jBox tooltip plugin --->
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js"></script>
 
-    <script type="text/javascript" src="/js/rose.js?c=<?php echo $cache ?>"></script>
+    <script type="text/javascript" src="/js/rose.js?c=<?php echo $cacheClear ?>"></script>
     <div class="modal"></div>
 </body>
 </html>

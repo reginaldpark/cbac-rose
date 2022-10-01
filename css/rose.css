@@ -3,11 +3,11 @@
 	--color1: #3498DB;
 	--color2: #29a329;
 	--color3: #9B59B6;
-	--color4: #F39C12;
-	--color5: #E74C3C;
+	--color4: #E74C3C;
+	--color5: #7E5109;
 	--color6: #F7DC6F;
 	--color7: #85929E;
-	--color8: #7E5109;
+	--color8: #F39C12;
 	--color9: #424949;
 	--color10: #1B4F72;
 }
@@ -53,6 +53,9 @@
 .avalanche-rose {
 	height: 640px; /* 37.6470588235rem; */
 	width: 648px; /* 38.1176470588rem; */
+	/* height: 40.1em;
+    width: 40.6em; */
+
 	padding: 10px;
 	background-image: url("/img/blank.jpg");
 	position: relative;
@@ -218,21 +221,6 @@
 .color10 {
 	background-color: var(--color10);
 } 
-.colordanger1 {
-	background-color: #000000;
-}
-.colordanger2 {
-	background-color: #ff0000;
-}
-.colordanger3 {
-	background-color: #ff6600;
-}
-.colordanger4 {
-	background-color: #ffff00;
-}
-.colordanger5 {
-	background-color: #29a329;
-}
 
 table td {
 	border-top: none;
@@ -243,6 +231,39 @@ table td {
 		display: block;
 	}
 }
+
+
+/*
+html {
+	font-size: 14px;
+}
+
+@media (min-width:480px) {
+	html {
+		font-size: 12px;
+	}
+}
+
+@media (min-width:767px) {
+	html {
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 979px) {
+	html {
+		font-size: 16px;
+	}
+}
+980-1200
+@media (min-width:1200px) {
+	html {
+		font-size: 17px;
+	}
+}
+*/
+
+
 
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window
@@ -273,6 +294,14 @@ body.loading .modal {
    modal element will be visible */
 body.loading .modal {
     display: block;
+}
+
+.none {
+	display: none;
+}
+
+div.dt-buttons {
+	float: right;
 }
 
 

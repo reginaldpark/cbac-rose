@@ -1,42 +1,36 @@
 <?php
 
-/* Query Database */
+/* Query Database
+Smart filters
 require __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\BigQuery\BigQueryClient;
+ */
 
 class Data {
     // Properties
-    public $dangers;
     public $zones;
     public $sizes;
     public $triggers;
     public $types;
     public $interfaces;
+    public $modifiers;
 
     function __construct() {
 
-        $this->dangers = array("Extreme","High","Considerable","Moderate","Low");
         $this->zones = array("Northwest", "Southeast");
-        // $this->sizes = array("");
-        // $this->types = array("");
-        // $this->interfaces = array("");
-        // $this->triggers = array("");
-        $this->sizes= $this->getFilter( 'destructive_size' );
-        $this->types= $this->getFilter( 'type' );
-        $this->interfaces= $this->getFilter( 'failure_plane' );
-        $this->triggers= $this->getFilter( 'trigger' );
+        $this->sizes = array("D1", "D1.5", "D2", "D2.5", "D3", "D3.5", "D4", "D4.5", "D5");
+        $this->types = array("Loose", "Wet Loose", "Soft Slab", "Hard Slab", "Wet Slab", "Other");
+        $this->interfaces = array("Within storm snow", "New/Old interface", "Old Snow", "Ground", "Unknown");
+        $this->triggers = array("Natural", "Human Triggered", "Explosive", "Other", "Unknown");
+        $this->modifiers = array("Unintentional", "Controlled", "Remote", "Sympathetic", "Unknown");
+        // $this->sizes= $this->getFilter( 'destructive_size' );
+        // $this->types= $this->getFilter( 'type' );
+        // $this->interfaces= $this->getFilter( 'failure_plane' );
+        // $this->triggers= $this->getFilter( 'trigger' );
 
     }
-
-    function getDangers() {
-        return $this->dangers;
-    }
-
-    function getZones() {
-        return $this->zones;
-    }
-
+/* Smart filters
     function getFilter( $column ) {
 
         $filter = array();
@@ -67,7 +61,7 @@ class Data {
 
         return $filter;
     }
-
+*/
 }
 
 ?>
