@@ -93,10 +93,13 @@ $(function(){
 		getJSONData( startDateFormat, endDateFormat );
 	});
 
-	console.log(minDefault);
-	console.log(maxDefault);
+
+		
+	var minDefaultFormat = formatDateForQuery( minDefault );
+	var maxDefaultFormat = formatDateForQuery( maxDefault );
+
 	// Default Date Range
-	getJSONData( minDefault,maxDefault );
+	getJSONData( minDefaultFormat,maxDefaultFormat );
 	// Default legend
 	$(".custom-legend").show();
 	  
@@ -109,9 +112,6 @@ function getJSONData( startDate, endDate ) {
 	// If end date is today, use opacity to show recency
 	var todayFormat = formatDateForQuery( new Date() );
 	var addOpacity = ( endDate == todayFormat )  ? true : false;
-
-	console.log(startDate);
-	console.log(endDate);
 
 	// Get data
 	$.ajax({
