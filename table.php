@@ -1,11 +1,11 @@
 <?php
-
+    // OLD LINK https://docs.google.com/spreadsheets/d/1xL2iXjjMsr4cGzomA3MLO7FGcvwXzOCpw4bSxIqt7VA/edit#gid=496425334
     //  echo('GOOGLE_APPLICATION_CREDENTIALS===='.getenv('GOOGLE_APPLICATION_CREDENTIALS'));
     // die(phpinfo());
 
-    $cacheClear = "1.7";
+    $cacheClear = "1.8";
     $startDate = '2021-08-01';
-    $endDate = '2022-07-31';
+    $endDate = date("Y-m-d");
     include('data.php');
 
     // die($avalanches);
@@ -44,16 +44,18 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/datetime/1.1.1/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/searchpanes/1.4.0/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/select/1.3.4/css/select.dataTables.min.css">
 
-    <link rel='stylesheet' href='/css/rose.css?c=<?php echo $cacheClear ?>' type='text/css'	media='all' />
+    <link rel='stylesheet' href='/css/table.css?c=<?php echo $cacheClear ?>' type='text/css'	media='all' />
 </head>
 <body>		
     <div style="margin:20px;">
-        <table border="0" cellspacing="0" cellpadding="0" style="float: left; width: 50%; position: absolute; z-index:1000">
+        <table class="date-filter-container" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="padding:0;"><b>Date Filter:</b>&nbsp;&nbsp;&nbsp;
+                    <td style="padding:0;"><b id="date-filter-title">Date Filter:&nbsp;&nbsp;&nbsp;</b>
                         Minimum date:&nbsp;<input type="text" id="min" name="min">&nbsp;&nbsp;
                         Maximum date:&nbsp;<input type="text" id="max" name="max">
                     </td>
@@ -128,6 +130,8 @@
 	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/searchpanes/1.4.0/js/dataTables.searchPanes.min.js"></script>
 	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+	<script type="text/javascript" language="javascript" src="//cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 
     <script type="text/javascript" src="/js/table.js?c=<?php echo $cacheClear ?>"></script>
 </body>
