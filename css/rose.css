@@ -324,7 +324,7 @@ table td {
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
 body.loading .modal {
-    overflow: hidden;   
+    overflow: hidden;
 }
 
 /* Anytime the body has the loading class, our
@@ -336,14 +336,5 @@ body.loading .modal {
 .none {
 	display: none;
 }
-
-div.dt-buttons {
-	float: right;
-}
-
-.mnay-0.x-section {
-	padding-top: 0px;
-}
-
 
  

@@ -1,0 +1,47 @@
+.date-filter-container {
+    float: left; 
+    width: 50%; 
+    position: absolute; 
+    z-index:1000;
+}
+
+div.dt-buttons {
+	float: right;
+}
+
+table td {
+    border-top: none;
+}
+
+.none {
+	display: none;
+}
+
+@media (max-device-width: 1430px) {
+    #date-filter-title {
+        display: block;
+    }
+}
+
+@media (max-device-width: 540px) {
+    .date-filter-container {
+        position: relative;
+        display: block;
+        width: auto;
+    }
+    div.dt-buttons,
+    .dtsp-panesContainer {
+        display: none;
+    }
+    /* div.dataTables_length,
+    div.dataTables_filter {
+        float: right !important;
+    } */
+
+    #date-filter-title {
+        display: block;
+    }
+    #min, #max {
+        width: 60%;
+    }
+}
