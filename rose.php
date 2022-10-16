@@ -233,6 +233,6 @@
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.3/dist/jBox.all.min.js"></script>
 
     <script type="text/javascript" src="/js/rose.js?c=<?php echo $cacheClear ?>"></script>
-    <div class="modal"></div>
+    <div class="loading-modal"></div>
 </body>
 </html>

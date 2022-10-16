@@ -55,9 +55,10 @@
         <table class="date-filter-container" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="padding:0;"><b id="date-filter-title">Date Filter:&nbsp;&nbsp;&nbsp;</b>
-                        Minimum date:&nbsp;<input type="text" id="min" name="min">&nbsp;&nbsp;
-                        Maximum date:&nbsp;<input type="text" id="max" name="max">
+                    <td style="padding:0;"><b id="date-filter-title">Filters:&nbsp;&nbsp;</b>
+                        <input type="text" id="min" name="min" placeholder="Start Date">&nbsp;
+                        <input type="text" id="max" name="max" placeholder="End Date">&nbsp;
+                        <select id="location-filter"><option value="">Location</option></select>
                     </td>
                 </tr>
             </tbody>
@@ -82,8 +83,6 @@
             <tbody>
                 <?php foreach ($avalanches as $avalanche) {  
                     $c1 = explode("-", $avalanche['avalancheDate']); 
-                    // {$c1[1]}/{$c1[2]}/{$c1[0]
-                    // $c1 = $avalanche['avalancheDate']; {$c1[1]}/{$c1[2]}/
                     echo "<tr>
                             <td>{$avalanche['avalancheDate']}</td>
                             <td><span class='none'>{$avalanche['avalancheDate']}</span>{$c1[1]}/{$c1[2]}/{$c1[0]}</td>
@@ -101,17 +100,6 @@
                 }
                 ?>
             </tbody>
-            <!--- <tfoot>
-                <tr>
-                    <th>Date</th>
-                    <th>Forcast Zone</th>
-                    <th>Size</th>
-                    <th>Trigger</th>
-                    <th>Type</th>
-                    <th>Interface</th>
-                    <th>Link</th>
-                </tr>
-            </tfoot> --->
         </table>
     </div>
 
