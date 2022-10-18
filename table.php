@@ -52,6 +52,9 @@
 </head>
 <body>		
     <div style="margin:20px;">
+        <header class="entry-header" style="margin-bottom:15px;">
+            <h1 class="entry-title">Avalanche Table</h1>
+        </header>
         <table class="date-filter-container" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
