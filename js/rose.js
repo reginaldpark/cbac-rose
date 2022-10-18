@@ -169,7 +169,9 @@ function getJSONData( startDate, endDate ) {
 			// Initialize new tooltips
 			new jBox('Tooltip', {
 				attach: '.avalanches',
-				trigger: 'click'
+				trigger: 'click',
+				closeOnClick: 'body',
+				closeButton: 'box'
 			});
 
 			$body.removeClass("loading");

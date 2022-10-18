@@ -1,17 +1,19 @@
-var minDate, maxDate;
+var minDate, maxDate, locationFilter;
  
 // Custom filtering function which will search data in column four between two values
 $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date( data[0] );
- 
+        var loc = locationFilter.val();
+        var rowDate = new Date( data[0] );
+        var rowLocation = data[3];
+        
         if (
-            ( min === null && max === null ) ||
-            ( min === null && date <= max ) ||
-            ( min <= date  && max === null ) ||
-            ( min <= date  && date <= max )
+            ( min === null && max === null && ( loc === null || loc === '' || loc === rowLocation ) ) ||
+            ( min === null && rowDate <= max && ( loc === null || loc === '' || loc === rowLocation ) ) ||
+            ( min <= rowDate && max === null && ( loc === null || loc === '' || loc === rowLocation ) ) ||
+            ( min <= rowDate && rowDate <= max && ( loc === null || loc === '' || loc === rowLocation ) )
         ) {
             return true;
         }
@@ -28,9 +30,28 @@ $(function(){
     maxDate = new DateTime($('#max'), {
         format: 'MM/DD/YYYY'
     });
+    locationFilter = $('#location-filter');
 
     var table = $('#example').DataTable( {
         dom: 'BPlfrtip',
+        initComplete: function () {
+            this.api()
+                .columns( 3 )
+                .every(function () {
+                    var column = this;
+                    var select = locationFilter;
+ 
+                    column
+                        .data()
+                        .unique()
+                        .sort()
+                        .each(function (d, j) {
+                            if ( d != '' ) {
+                                select.append('<option value="' + d + '">' + d + '</option>');
+                            }
+                        });
+                });
+        },
         buttons: [
             {
                 extend: 'excel',
@@ -55,7 +76,8 @@ $(function(){
         pageLength: 25,
         order: [[ 0, "desc" ]],
         searchPanes: {
-            controls: false
+            controls: false,
+            viewCount: false
         },
         columnDefs: [
             { 
@@ -75,7 +97,7 @@ $(function(){
     } );
 
     // Refilter the table
-    $('#min, #max').on('change', function () {
+    $('#min, #max, #location-filter').on('change', function () {
         table.draw();
     });
 

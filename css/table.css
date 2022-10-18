@@ -28,9 +28,12 @@ table td {
         position: relative;
         display: block;
         width: auto;
+        margin-bottom: 0;
     }
     div.dt-buttons,
-    .dtsp-panesContainer {
+    .dtsp-panesContainer,
+    div.dataTables_length,
+    div.dataTables_filter {
         display: none;
     }
     /* div.dataTables_length,
@@ -41,7 +44,7 @@ table td {
     #date-filter-title {
         display: block;
     }
-    #min, #max {
-        width: 60%;
+    #min, #max, #location-filter {
+        width: 95%;
     }
 }
