@@ -3,7 +3,7 @@
     //  echo('GOOGLE_APPLICATION_CREDENTIALS===='.getenv('GOOGLE_APPLICATION_CREDENTIALS'));
     // die(phpinfo());
 
-    $cacheClear = "1.9";
+    $cacheClear = "1.10";
     $startDate = '2021-08-01';
     $endDate = date("Y-m-d");
     include('data.php');
