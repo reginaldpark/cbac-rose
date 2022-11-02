@@ -3,7 +3,7 @@
     //  echo('GOOGLE_APPLICATION_CREDENTIALS===='.getenv('GOOGLE_APPLICATION_CREDENTIALS'));
     // die(phpinfo());
 
-    $cacheClear = "1.8";
+    $cacheClear = "1.9";
     $startDate = '2021-08-01';
     $endDate = date("Y-m-d");
     include('data.php');
@@ -51,7 +51,12 @@
     <link rel='stylesheet' href='/css/table.css?c=<?php echo $cacheClear ?>' type='text/css'	media='all' />
 </head>
 <body>		
-    <div style="margin:20px;">
+    <div class="banner">
+        <a href="https://cbavalanchecenter.org">
+            <img src="/img/CBAC_white.png" alt="CBAC">
+        </a>
+    </div>
+    <div class="main-container">
         <header class="entry-header" style="margin-bottom:15px;">
             <h1 class="entry-title">Avalanche Table</h1>
         </header>
