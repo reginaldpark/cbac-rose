@@ -5,7 +5,7 @@
 
     include('filterData.php');
 
-    $cacheClear = "1.9";
+    $cacheClear = "1.91";
     $data = new Data;
     // $zones = $data->getZones();
     $zones = $data->zones;

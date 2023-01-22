@@ -6,14 +6,15 @@ $(function(){
 	var selectedYear = parseInt( $( "#year-select" ).val() );
 	var today = new Date();
 	
-	if ( selectedYear == today.getFullYear() ) {
-		// This year bounds & default values
+	if ( ( selectedYear == today.getFullYear() && today.getMonth() >= 8 ) || 
+		( selectedYear == today.getFullYear()-1 && today.getMonth() < 8 ) ) {
+		// This season bounds & default values
 		var minBound = new Date(selectedYear, 8, 1),
 			maxBound = today,
 			minDefault= new Date(today.getFullYear(), today.getMonth(), today.getDate()-14),
 			maxDefault = today;
 	} else {
-		// Last year bounds & default values
+		// Previous seasons bounds & default values
 		var minBound = new Date(selectedYear, 8, 1),
 			maxBound = new Date(selectedYear+1, 7, 31),
 			minDefault= new Date(selectedYear, 8, 1),
